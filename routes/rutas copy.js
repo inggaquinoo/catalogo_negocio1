@@ -1,28 +1,29 @@
 const express = require('express')
+//const ModeloSorteo = require('../models/file')
+//const ModeloImagen = require('../models/model_imagen')
 const ModeloProducto = require('../models/producto') ///Lo NUEVO
 const router = express.Router()
 
 const mongoose = require('mongoose')
 const { json } = require('body-parser')
 var ObjectId = mongoose.Types.ObjectId //Permite generar el tipo de dato ObjectId para que se inserte en la BD
-//const fileUpload = require('express-fileupload');//Viene de npm FileUpload
-//const multer = require('multer')
-
+const fileUpload = require('express-fileupload');//Viene de npm FileUpload
+const multer = require('multer')
+//const textocontrato = require("../externo/contrato") //contiene el texto del contrato
 const app = express();
 
 ///////Modulo file system / Modulo file system extra; según el video dice que ya viene instalado en Node, es verdad
 //en Node ya se instala cuando se instala Node pero en el front end tienes que instalarlo aparte, gran leccion!
 //en realidad se usa fs-extra en lugar de fs porque permite regresar promesas
-//const fs = require('fs-extra'); //es para eliminar el archivo de la carpeta public/uploads luego de que 
+const fs = require('fs-extra'); //es para eliminar el archivo de la carpeta public/uploads luego de que 
 //ha subido a cloudinary y mongoDB
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////LO NUEVO ////////////////////////////////////////////
-//const path = require('path');//nos permite trabajar con las rutas de node
+const path = require('path');//nos permite trabajar con las rutas de node
 //ULTIMO -> const cloudinary = require('cloudinary');
 
 //A continuación las especificaciones de multer para la creacion de archivos y en donde se van a guardar
-/*
 const storage = multer.diskStorage({
     //destination: path.join(__dirname, 'public/uploads'), //creará una carpeta local llamada public/uploads //con esta configuración la carpeta se crea dentro de la carpeta routes
     destination: 'public/uploads', //creará una carpeta local llamada public/uploads //con esta configuración la carpeta se crea dentro de la carpeta server
@@ -37,7 +38,6 @@ const storage = multer.diskStorage({
     //path.extname(file.originalname) extrae la extensión del archivo .jpg o .png o .png, etc
     //de tal manera que al el nombre del archivo cambia en cada milisegundo seguido de la extensión
 })
-*/
 //esto es para la subida de imagenes al servidor
 //sino es router es app
 //image es lo que se va a enviar desde html en este caso el nombre de la variable de postman
@@ -45,9 +45,9 @@ const storage = multer.diskStorage({
 //"interpretacion: multer revisa si cada vez que se envia un dato tiene el nombre image"
 //.single = para un archivo
 //.array = para varios archivos
-//router.use(multer({storage}).array('pelos')); //sí, este es el nombre de la variable en el postman
+router.use(multer({storage}).array('pelos')); //sí, este es el nombre de la variable en el postman
 //const descargas = multer({storage: storage}).array('archivo');
-//var descargas = multer({storage});
+var descargas = multer({storage});
 //var descargamultiple = descargas.fields('archivo')
 //"interpretacion: multer revisa si cada vez que se envia un dato tiene el nombre image"
 
@@ -813,6 +813,38 @@ router.post('/eliminarimagenesproducto', async(req, res) => { //ruta para que la
 
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////----EDICIÓN------//////////////////////////////////////////////
+//14 - RUTA PARA ENCONTRAR UN BOLETO Y EDITARLO, POR EL ID
+//api/sorteos/boletocomprado/:id
+router.put('/boletocomprado/:id', (req, res) => {
+    var fecha_compra = new Date() //Captura la fecha actual del sistema
+    const boletoID = req.params.id;
+    console.log("req.params.id ->    " + req.params.id)
+
+    ModeloBoleto.findById(boletoID)
+        .then(boleto => {
+            //Solo necesito actualizar estos campos:
+            boleto.cliente_id = req.body.cliente_id;
+            boleto.fecha_compra = fecha_compra;
+            boleto.estado_boleto = "1";
+
+            return boleto.save();
+        })
+        .then(resultado => {
+            //console.log("resultado ->   "+resultado.fecha_sorteo)
+            //console.log("resultado typeof ->   "+typeof resultado.fecha_sorteo)//typeof Object
+            //console.log("FECHA DE COMPRA DE BOLETO ->    "+result.fecha_compra); //arroja esta forma Thu Sep 28 2023 00:52:01 GMT-0500 (hora estándar de Perú); es una cadena
+            res.send({ 
+                messageresultado: resultado.fecha_compra
+            })
+        })
+        .catch(err => console.log(err))
+});
+
+
+
+
 //07 - RUTA PARA CONSULTAR / LEER TODOS LOS SORTEOS
 //api/sorteos/
 router.get('/',(req, res) => {
@@ -845,10 +877,8 @@ router.get('/',(req, res) => {
 //Deja esto siempre al último del archivo, si o mueves te da un error
 //Este es un middleware, es decir se monta una función en el Node, en este caso
 //la función la proporciona npm FileUpload, también se declara en la cabecera
-/*
 router.use(fileUpload({
     limits: { fileSize: 50 * 1024 * 1024 },
   }));
-  */
 ///////////////////////////////////////////////////////////////////////////////
 module.exports = router
