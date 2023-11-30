@@ -8,7 +8,7 @@ const mongoose = require('mongoose')
 const { json } = require('body-parser')
 var ObjectId = mongoose.Types.ObjectId //Permite generar el tipo de dato ObjectId para que se inserte en la BD
 //ULTIMO -> const fileUpload = require('express-fileupload');//Viene de npm FileUpload
-const multer = require('multer')
+//ULTIMO -> const multer = require('multer')
 //const textocontrato = require("../externo/contrato") //contiene el texto del contrato
 const app = express();
 
@@ -24,6 +24,8 @@ const path = require('path');//nos permite trabajar con las rutas de node
 //ULTIMO -> const cloudinary = require('cloudinary');
 
 //A continuación las especificaciones de multer para la creacion de archivos y en donde se van a guardar
+/*
+//ULTIMO -> 
 const storage = multer.diskStorage({
     //destination: path.join(__dirname, 'public/uploads'), //creará una carpeta local llamada public/uploads //con esta configuración la carpeta se crea dentro de la carpeta routes
     destination: 'public/uploads', //creará una carpeta local llamada public/uploads //con esta configuración la carpeta se crea dentro de la carpeta server
@@ -38,6 +40,8 @@ const storage = multer.diskStorage({
     //path.extname(file.originalname) extrae la extensión del archivo .jpg o .png o .png, etc
     //de tal manera que al el nombre del archivo cambia en cada milisegundo seguido de la extensión
 })
+//ULTIMO -> 
+*/
 //esto es para la subida de imagenes al servidor
 //sino es router es app
 //image es lo que se va a enviar desde html en este caso el nombre de la variable de postman
@@ -45,7 +49,7 @@ const storage = multer.diskStorage({
 //"interpretacion: multer revisa si cada vez que se envia un dato tiene el nombre image"
 //.single = para un archivo
 //.array = para varios archivos
-router.use(multer({storage}).array('pelos')); //sí, este es el nombre de la variable en el postman
+//ULTIMO -> router.use(multer({storage}).array('pelos')); //sí, este es el nombre de la variable en el postman
 //const descargas = multer({storage: storage}).array('archivo');
 //ULTIMO -> var descargas = multer({storage}); //NO ES USADO, BORRAR
 //var descargamultiple = descargas.fields('archivo')
