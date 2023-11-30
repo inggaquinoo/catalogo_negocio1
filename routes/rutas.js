@@ -47,7 +47,7 @@ const storage = multer.diskStorage({
 //.array = para varios archivos
 router.use(multer({storage}).array('pelos')); //sí, este es el nombre de la variable en el postman
 //const descargas = multer({storage: storage}).array('archivo');
-var descargas = multer({storage});
+//ULTIMO -> var descargas = multer({storage}); //NO ES USADO, BORRAR
 //var descargamultiple = descargas.fields('archivo')
 //"interpretacion: multer revisa si cada vez que se envia un dato tiene el nombre image"
 
