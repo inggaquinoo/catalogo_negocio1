@@ -7,7 +7,7 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const { json } = require('body-parser')
 var ObjectId = mongoose.Types.ObjectId //Permite generar el tipo de dato ObjectId para que se inserte en la BD
-//ULTIMO -> const fileUpload = require('express-fileupload');//Viene de npm FileUpload
+const fileUpload = require('express-fileupload');//Viene de npm FileUpload
 //ULTIMO -> const multer = require('multer')
 //const textocontrato = require("../externo/contrato") //contiene el texto del contrato
 const app = express();
@@ -881,10 +881,9 @@ router.get('/',(req, res) => {
 //Deja esto siempre al último del archivo, si o mueves te da un error
 //Este es un middleware, es decir se monta una función en el Node, en este caso
 //la función la proporciona npm FileUpload, también se declara en la cabecera
-/* ULTIMO
 router.use(fileUpload({
     limits: { fileSize: 50 * 1024 * 1024 },
   }));
-  ULTIMO */
+
 ///////////////////////////////////////////////////////////////////////////////
 module.exports = router
