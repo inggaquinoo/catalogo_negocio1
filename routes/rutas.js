@@ -877,8 +877,10 @@ router.get('/',(req, res) => {
 //Deja esto siempre al último del archivo, si o mueves te da un error
 //Este es un middleware, es decir se monta una función en el Node, en este caso
 //la función la proporciona npm FileUpload, también se declara en la cabecera
+/* ULTIMO
 router.use(fileUpload({
     limits: { fileSize: 50 * 1024 * 1024 },
   }));
+  ULTIMO */
 ///////////////////////////////////////////////////////////////////////////////
 module.exports = router
