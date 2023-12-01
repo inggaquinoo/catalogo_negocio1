@@ -29,7 +29,8 @@ const storage = multer.diskStorage({
     //destination: path.join(__dirname, 'public/uploads'), //creará una carpeta local llamada public/uploads //con esta configuración la carpeta se crea dentro de la carpeta routes
     //destination: path.join(__dirname, 'contenedor'), //así funciona - 8:43 pm
     //https://console.cloudinary.com/pm/c-3587ff5ef751e41410bfa389efcba4/media-explorer/negocio1
-    destination: 'box', //creará una carpeta local llamada public/uploads //con esta configuración la carpeta se crea dentro de la carpeta server
+    //destination: 'box', //esto no funciona
+    destination: path.join(__dirname, 'boxes/pictures'), //testing...
     filename: (req, file, cb) => { //filename creará el nombre del archivo
         var nombrevariable = new Date().getTime() + Math.random(); 
         cb(null, nombrevariable + path.extname(file.originalname));
