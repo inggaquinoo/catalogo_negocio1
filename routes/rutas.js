@@ -25,14 +25,17 @@ const cloudinary = require('cloudinary');
 
 //A continuación las especificaciones de multer para la creacion de archivos y en donde se van a guardar
 const storage = multer.diskStorage({
+    
     //destination: path.join(__dirname, 'public/uploads'), //creará una carpeta local llamada public/uploads //con esta configuración la carpeta se crea dentro de la carpeta routes
     //destination: path.join(__dirname, 'contenedor'), //así funciona con 1 solo nivel en vercel
     //https://console.cloudinary.com/pm/c-3587ff5ef751e41410bfa389efcba4/media-explorer/negocio1
     //destination: 'box', //esto no funciona en Vercel
     //destination: path.join(__dirname, 'boxes/pictures'), //así tambien funciona con 2 niveles en Vercel - 10:04 pm
+    destination: path.join(__dirname, 'cajas'), //así tambien funciona con 2 niveles en Vercel - 10:04 pm
     //destination: path.join(process.cwd(), 'tmp'),
-    destination: __dirname+'../../../uploads',
+    //destination: __dirname+'../../../uploads', //esto no funciona
     //const file = path.join(process.cwd(), 'files', 'test.json');
+    
     filename: (req, file, cb) => { //filename creará el nombre del archivo
         var nombrevariable = new Date().getTime() + Math.random(); 
         cb(null, nombrevariable + path.extname(file.originalname));
