@@ -26,7 +26,7 @@ const path = require('path');//nos permite trabajar con las rutas de node
 //A continuación las especificaciones de multer para la creacion de archivos y en donde se van a guardar
 
 const storage = multer.diskStorage({
-    //destination: path.join(__dirname, 'public/uploads'), //creará una carpeta local llamada public/uploads //con esta configuración la carpeta se crea dentro de la carpeta routes
+    destination: path.join(__dirname, 'public/uploads'), //creará una carpeta local llamada public/uploads //con esta configuración la carpeta se crea dentro de la carpeta routes
     //ULTIMO -> destination: 'public/uploads', //creará una carpeta local llamada public/uploads //con esta configuración la carpeta se crea dentro de la carpeta server
     filename: (req, file, cb) => { //filename creará el nombre del archivo
         var nombrevariable = new Date().getTime() + Math.random(); 
