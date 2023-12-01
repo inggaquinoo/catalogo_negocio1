@@ -33,7 +33,10 @@ const storage = multer.diskStorage({
     //destination: path.join(__dirname, 'boxes/pictures'), //así tambien funciona con 2 niveles en Vercel - 10:04 pm
     //destination: path.join(__dirname, 'cajas'), //levanta vercel pero no guarda las imagenes
     //destination: path.join(__dirname, '/tmp'), //esto levanta vercel pero no guarda las imagenes
-    destination: '/tmp', //
+    destination: '/tmp', 
+    //GRAN LECCIÓN!
+    //Esta forma: destination: '/tmp' fue la solución al problema de que no guardaba las imagenes en la carpeta
+    //en Vercel. Ya no tienes que crear la carpeta tmp en la raíz, en este caso Vercel lo hace automáticamente
     //destination: path.join(process.cwd(), 'tmp'),
     //destination: __dirname+'../../../uploads', //esto no funciona
     //const file = path.join(process.cwd(), 'files', 'test.json');
