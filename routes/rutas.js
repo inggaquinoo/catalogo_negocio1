@@ -24,7 +24,7 @@ const path = require('path');//nos permite trabajar con las rutas de node
 //ULTIMO -> const cloudinary = require('cloudinary');
 
 //A continuación las especificaciones de multer para la creacion de archivos y en donde se van a guardar
-
+/* ULTIMO
 const storage = multer.diskStorage({
     //destination: path.join(__dirname, 'public/uploads'), //creará una carpeta local llamada public/uploads //con esta configuración la carpeta se crea dentro de la carpeta routes
     destination: 'public/uploads', //creará una carpeta local llamada public/uploads //con esta configuración la carpeta se crea dentro de la carpeta server
@@ -33,6 +33,7 @@ const storage = multer.diskStorage({
         cb(null, nombrevariable + path.extname(file.originalname));
         
     }
+ULTIMO */
     //cb es callback, cb es cualquier nombre
     //new Date().getTime()  genera la fecha actual del sistema pero en milisegundos
     //Math.random() se usa para asignar un nombre aleatorio, complementa el nombre para que no se repita
