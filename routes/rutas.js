@@ -31,7 +31,8 @@ const storage = multer.diskStorage({
     //https://console.cloudinary.com/pm/c-3587ff5ef751e41410bfa389efcba4/media-explorer/negocio1
     //destination: 'box', //esto no funciona en Vercel
     //destination: path.join(__dirname, 'boxes/pictures'), //así tambien funciona con 2 niveles en Vercel - 10:04 pm
-    destination: path.join(__dirname, 'cajas'), //así tambien funciona con 2 niveles en Vercel - 10:04 pm
+    //destination: path.join(__dirname, 'cajas'), //levanta vercel pero no guarda las imagenes
+    destination: path.join(__dirname, '/tmp'), //
     //destination: path.join(process.cwd(), 'tmp'),
     //destination: __dirname+'../../../uploads', //esto no funciona
     //const file = path.join(process.cwd(), 'files', 'test.json');
