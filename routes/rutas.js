@@ -38,6 +38,8 @@ const storage = multer.diskStorage({
     //Esta forma: destination: '/tmp' fue la solución al problema de que no guardaba las imagenes en la carpeta
     //en Vercel. Ya no tienes que crear la carpeta tmp en la raíz, en este caso Vercel lo hace automáticamente
     //y cuando haces la petición a las rutas lo direcciona automáticamente
+    //ADICIONAL: Cuando pruebas el destination: '/tmp' en el node local FUNCIONA! es increíble y no necesitas
+    //crear ninguna carpeta temp en ningun lado del proyect, genial!!!
     //destination: path.join(process.cwd(), 'tmp'),
     //destination: __dirname+'../../../uploads', //esto no funciona
     //const file = path.join(process.cwd(), 'files', 'test.json');
@@ -294,7 +296,8 @@ router.post('/agregarproducto', async(req, res) => { //ruta para que la ejecutes
 router.post('/eliminarproducto/:id_producto', async(req, res) => {
     const id_producto = req.params.id_producto;
     console.log(id_producto);
-    await ModeloProducto.findByIdAndRemove(id_producto)
+    await ModeloProducto.findByIdAndRemove(new ObjectId(id_producto))
+    //await ModeloProducto.collection.updateOne({ _id: new ObjectId(req.body._id)}, {
     //House.findByIdAndRemove(houseId)
         //parece que result es cualquier palabra
         .then(result => {
@@ -345,6 +348,8 @@ router.post('/editaragregarimagenes', async(req, res) => {
                         console.log("El archivó cambió exitosamente en MongoDB!!! - EDITAR AGREGAR")
                         console.log("Eliminando archivos de la carpeta local - EDITAR AGREGAR")
                         fs.unlink(req.files[i].path);//elimina los archivos de la carpeta public/uploads
+                        //cuando sube al node de vercel se supone que Vercel los elimina automáticamente
+                        //queda para revisión de versión 2
 
                         console.log("DATOS E IMAGENES ACTUALIZADAS SATISFACTORIAMENTE!!! - EDITAR AGREGAR")
 
@@ -687,6 +692,8 @@ async function subircloudinaryguardarenmongo (ruta, a, id) {
                             console.log("El archivó cambió exitosamente en MongoDB!!!")
                             console.log("Eliminando archivos de la carpeta local")
                             fs.unlink(ruta);//elimina los archivos de la carpeta public/uploads
+                            //cuando sube al node de vercel se supone que Vercel los elimina automáticamente
+                            //queda para revisión de versión 2
 
                             console.log("DATOS E IMAGENES ACTUALIZADAS SATISFACTORIAMENTE!!!")
                             //aqui iria el send, no olvides el message
