@@ -33,13 +33,14 @@ const storage = multer.diskStorage({
         cb(null, nombrevariable + path.extname(file.originalname));
         
     }
-ULTIMO */
+/*ULTIMO
     //cb es callback, cb es cualquier nombre
     //new Date().getTime()  genera la fecha actual del sistema pero en milisegundos
     //Math.random() se usa para asignar un nombre aleatorio, complementa el nombre para que no se repita
     //path.extname(file.originalname) extrae la extensión del archivo .jpg o .png o .png, etc
     //de tal manera que al el nombre del archivo cambia en cada milisegundo seguido de la extensión
 })
+ULTIMO*/
 //esto es para la subida de imagenes al servidor
 //sino es router es app
 //image es lo que se va a enviar desde html en este caso el nombre de la variable de postman
