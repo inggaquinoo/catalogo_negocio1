@@ -21,10 +21,9 @@ const fs = require('fs-extra'); //es para eliminar el archivo de la carpeta publ
 
 ///////////////////////////////LO NUEVO ////////////////////////////////////////////
 const path = require('path');//nos permite trabajar con las rutas de node
-//ULTIMO -> const cloudinary = require('cloudinary');
+const cloudinary = require('cloudinary');
 
 //A continuación las especificaciones de multer para la creacion de archivos y en donde se van a guardar
-
 const storage = multer.diskStorage({
     //destination: path.join(__dirname, 'public/uploads'), //creará una carpeta local llamada public/uploads //con esta configuración la carpeta se crea dentro de la carpeta routes
     //destination: path.join(__dirname, 'contenedor'), //así funciona con 1 solo nivel en vercel
@@ -34,7 +33,6 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => { //filename creará el nombre del archivo
         var nombrevariable = new Date().getTime() + Math.random(); 
         cb(null, nombrevariable + path.extname(file.originalname));
-        
     }
     //cb es callback, cb es cualquier nombre
     //new Date().getTime()  genera la fecha actual del sistema pero en milisegundos
@@ -58,7 +56,7 @@ router.use(multer({storage}).array('pelos')); //sí, este es el nombre de la var
 //var descargamultiple = descargas.fields('archivo')
 //"interpretacion: multer revisa si cada vez que se envia un dato tiene el nombre image"
 
-/*ULTIMO -> 
+
 //////////Autenticación para ingresar a cloudinary
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -66,7 +64,6 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET
 })
 //////////Fin Autenticación para ingresar a cloudinary
-ULTIMO -> */
 
 ////////////////////////////////////////////////////////
 // rutas.js ES EL ARCHIVO DE TODAS LAS RUTAS PARA 
