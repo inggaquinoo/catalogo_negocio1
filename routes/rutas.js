@@ -27,10 +27,10 @@ const path = require('path');//nos permite trabajar con las rutas de node
 
 const storage = multer.diskStorage({
     //destination: path.join(__dirname, 'public/uploads'), //creará una carpeta local llamada public/uploads //con esta configuración la carpeta se crea dentro de la carpeta routes
-    //destination: path.join(__dirname, 'contenedor'), //así funciona - 8:43 pm
+    //destination: path.join(__dirname, 'contenedor'), //así funciona con 1 solo nivel en vercel
     //https://console.cloudinary.com/pm/c-3587ff5ef751e41410bfa389efcba4/media-explorer/negocio1
-    //destination: 'box', //esto no funciona
-    destination: path.join(__dirname, 'boxes/pictures'), //testing...
+    //destination: 'box', //esto no funciona en Vercel
+    destination: path.join(__dirname, 'boxes/pictures'), //así tambien funciona con 2 niveles en Vercel
     filename: (req, file, cb) => { //filename creará el nombre del archivo
         var nombrevariable = new Date().getTime() + Math.random(); 
         cb(null, nombrevariable + path.extname(file.originalname));
