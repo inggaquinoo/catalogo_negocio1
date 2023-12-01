@@ -53,7 +53,7 @@ const mongoose = require('mongoose');
 //console.log ("cadena ->     "+process.env.MONGO_CONNECT_URI)
 //mongoose.connect(process.env.MONGO_CONNECT_URI,{useNewUrlParser: true, useUnifiedTopology: true})
 
-mongoose.connect(process.env.MONGO_CONNECT_URI)
+mongoose.connect(process.env.MONGO_CONNECT_URI) //se le quitaron los atributos {useNewUrlParser: true, useUnifiedTopology: true} porque eran obsoletos y funciona (1/12/2023)
 //mongoose.connect(process.env.MONGO_CONNECT_URI)
 //mongoose.connect(uri, { useNewUrlParser: true });
 
