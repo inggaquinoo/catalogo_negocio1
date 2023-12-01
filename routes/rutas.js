@@ -33,7 +33,7 @@ const storage = multer.diskStorage({
         cb(null, nombrevariable + path.extname(file.originalname));
         
     }
-/*ULTIMO
+
     //cb es callback, cb es cualquier nombre
     //new Date().getTime()  genera la fecha actual del sistema pero en milisegundos
     //Math.random() se usa para asignar un nombre aleatorio, complementa el nombre para que no se repita
@@ -49,7 +49,7 @@ ULTIMO*/
 //.single = para un archivo
 //.array = para varios archivos
 
-router.use(multer({storage}).array('pelos')); //sí, este es el nombre de la variable en el postman
+//ULTIMO router.use(multer({storage}).array('pelos')); //sí, este es el nombre de la variable en el postman
 
 //const descargas = multer({storage: storage}).array('archivo');
 //ULTIMO -> var descargas = multer({storage}); //NO ES USADO, BORRAR
