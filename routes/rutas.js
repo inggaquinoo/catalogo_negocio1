@@ -37,6 +37,7 @@ const storage = multer.diskStorage({
     //GRAN LECCIÓN!
     //Esta forma: destination: '/tmp' fue la solución al problema de que no guardaba las imagenes en la carpeta
     //en Vercel. Ya no tienes que crear la carpeta tmp en la raíz, en este caso Vercel lo hace automáticamente
+    //y cuando haces la petición a las rutas lo direcciona automáticamente
     //destination: path.join(process.cwd(), 'tmp'),
     //destination: __dirname+'../../../uploads', //esto no funciona
     //const file = path.join(process.cwd(), 'files', 'test.json');
