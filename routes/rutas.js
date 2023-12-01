@@ -295,13 +295,8 @@ router.post('/agregarproducto', async(req, res) => { //ruta para que la ejecutes
 //api/catalogo/editaragregarimagenes
 router.post('/eliminarproducto/:id_producto', async(req, res) => {
     const id_producto = req.params.id_producto;
-    console.log(id_producto);
-    //await ModeloProducto.findByIdAndRemove(new ObjectId(id_producto)) //anterior y funcionaba antes
-    //await ModeloProducto.findByIdAndRemove({ _id: new ObjectId(req.params.id_producto)})//no funciona
-    //await ModeloProducto.findOneAndDelete({ _id: new ObjectId(req.params.id_producto)})//ok funciona
-    await ModeloProducto.findOneAndDelete(new ObjectId(id_producto))//
-    //await ModeloProducto.collection.updateOne({ _id: new ObjectId(req.body._id)}, {
-    //House.findByIdAndRemove(houseId)
+    //console.log(id_producto);
+    await ModeloProducto.findOneAndDelete(new ObjectId(id_producto))
         //parece que result es cualquier palabra
         .then(result => {
             res.send({
